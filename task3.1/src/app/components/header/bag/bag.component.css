@@ -1,0 +1,247 @@
+.container{
+  padding: 30px 20px;
+}
+
+.title-small-text{
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  color: #A9A9A9;
+}
+
+.billing__info > div > div{
+  padding-right: 20px;
+  margin: 20px 0;
+}
+
+.head{
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 18px;
+  color: #151515;
+}
+
+.input{
+  width: 100%;
+  height: 42px;
+  border: 1px solid #D1D1D1;
+  border-radius: 12px;
+  background: #F9F9F9;
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 19px;
+  padding: 20px;
+}
+
+/* order */
+
+.order{
+  border: 1px solid #D1D1D1;
+  border-radius: 12px;
+  padding: 30px 20px;
+}
+
+.order__title-small-text{
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  color: #A9A9A9;
+}
+
+.order__title{
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 33px;
+  color: #151515;
+}
+
+/* product */
+
+.product{
+  padding: 3%;
+}
+
+.text{
+margin: 10px 0px
+}
+
+.product__img{
+  width:100%;
+  border-radius: 12px;
+  padding-bottom: 5px;
+}
+
+.product__action{
+  margin-top: 5px;
+  border: none;
+  background-color: inherit;
+}
+
+hr{
+  margin-top: 10px;
+}
+
+span{
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  color: #A9A9A9;
+}
+
+.product__icon{
+  padding-right:
+  5px;
+}
+
+.product-info__title{
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 22px;
+  color: #151515;
+  height: 22px;
+}
+
+.product-info__option-name{
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  color: #A9A9A9;
+}
+
+.product-info__info-text{
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  color: #151515;
+  width: 70%
+}
+
+.product__img-block{
+  display: inline-block;
+  height: 30%;
+}
+
+.billing__radio{
+  background: #F9F9F9;
+  border: 1px solid #D1D1D1;
+  border-radius: 12px;
+  width: 100%;
+  height: 48px;
+  margin: 10px 0;
+}
+.billing__radio > input{
+  height: 20px;
+  line-height: 48px;
+  margin-top: 14px;
+}
+.billing__radio > p {
+  line-height: 48px;
+}
+
+.billing__radio > img {
+  height: 30px;
+  margin-top: 10px;
+}
+
+.billing__label{
+  width: 100%;
+}
+
+.textarea{
+  height: 112px;
+  padding: 10px
+}
+
+.agree{
+  margin: 10px 0;
+  border: 1px solid #D1D1D1;
+  border-radius: 12px;
+  background: #F9F9F9;
+  display: inline-block;
+  padding: 10px;
+}
+
+input.ng-invalid.ng-touched {
+  border: 1px solid red;
+ }
+
+input.ng-valid.ng-touched {
+  border: 1px solid green;
+ }
+
+textarea.ng-invalid {
+  border: 1px solid red;
+ }
+
+.success-massage{
+  display: block;
+  color: green;
+}
+
+.fail-massage{
+  display: block;
+  color: red
+}
+
+.form > div {
+  margin: 50px 0;
+}
+
+.price {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 18px;
+  color: #6A983C;
+}
+
+.submit{
+  padding: 12px 48px;
+  gap: 6px;
+  width: 218px;
+  height: 56px;
+  background: #6A983C;
+  border: 2px solid #46760A;
+  border-radius: 12px;
+  margin-bottom: 40px;
+}
+
+.safe-data{
+  width: 213px;
+}
+
+.safe-data > p{
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 18px;
+  color: #151515;
+}
+.safe-data > span{
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  color: #A9A9A9;
+}

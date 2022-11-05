@@ -1,0 +1,210 @@
+<div class="container">
+  <div class="head row">
+    <h2 class="head__text col-md-4">{{actualCategory ? actualCategory[0].toUpperCase() +
+      actualCategory.toLowerCase().slice(1) : ''}}</h2>
+    <div class="head__settings col-md-1 offset-md-5">
+      <button class="head__btn" (click)="view='grid'">
+        <img src="assets/gridView.svg" alt="">
+        <p [class.active]="view ==='grid'" class="head__view-field">Grid view</p>
+      </button>
+    </div>
+    <div class="head__settings col-md-1">
+      <button class="head__btn" (click)="view='list'">
+        <img src="assets/listView.svg" alt="">
+        <p [class.active]="view ==='list'" class="head__view-field">List view</p>
+      </button>
+    </div>
+    <div class="head__settings col-md-1">
+      <img src="" alt="">
+      <p class="head__view-field">Products</p>
+    </div>
+  </div>
+  <div class="filters">
+    <div class="filters__item"></div>
+    <div class="filters__item"></div>
+    <div class="filters__item"></div>
+    <div class="filters__item"></div>
+    <small>Applied filters:</small>
+  </div>
+  <div class="row">
+    <div class="col-md-3 menu">
+      <div class="menu__categories">
+        <h5>Categories</h5>
+
+        <div *ngIf="(loadingCategories$ | async)">
+          <app-loader></app-loader>
+        </div>
+
+        <div *ngIf="(loadedCategories$ | async)">
+          <ul *ngIf="categories$ |async as categories" class="menu__list">
+            <li *ngFor="let category of categories">
+              <a [class.actual]="actualCategory===category[0].toLowerCase() + category.slice(1).split(' ').join('')"
+                [routerLink]="['/category', category[0].toLowerCase() + category.slice(1).split(' ').join('')]">{{category}}</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <form class="form" [formGroup]="form" (ngSubmit)="submitFilters()">
+
+        <div class="menu__authors">
+          <h5>Authors</h5>
+          <div class="menu__form">
+            <input class="menu__checkbox" id="Johannes Vermeer" type="checkbox" formControlName="JohannesVermeer">
+            <label for="Johannes Vermeer">Johannes Vermeer</label>
+          </div>
+          <div class="menu__form">
+            <input class="menu__checkbox" id="Edvard Munch" type="checkbox" formControlName="EdvardMunch">
+            <label for="Edvard Munch">Edvard Munch</label>
+          </div>
+          <div class="menu__form">
+            <input class="menu__checkbox" id="Leonardo da Vinci" type="checkbox" formControlName="LeonardodaVinci">
+            <label for="Leonardo da Vinci">Leonardo da Vinci</label>
+          </div>
+          <div class="menu__form">
+            <input class="menu__checkbox" id="Vincent van Gogh" type="checkbox" formControlName="VincentvanGogh">
+            <label for="Vincent van Gogh">Vincent van Gogh</label>
+          </div>
+          <div class="menu__form">
+            <input class="menu__checkbox" id="Pablo Picasso" type="checkbox" formControlName="PabloPicasso">
+            <label for="Pablo Picasso">Pablo Picasso</label>
+          </div>
+        </div>
+
+        <div class="menu__rating">
+          <h5>Rating</h5>
+          <div class="menu__form">
+            <div>
+              <input class="menu__checkbox" id="5" type="checkbox" formControlName="score5">
+              <label for="5">
+                <img src="/assets/score.svg" alt="star">
+                <img src="/assets/score.svg" alt="star">
+                <img src="/assets/score.svg" alt="star">
+                <img src="/assets/score.svg" alt="star">
+                <img src="/assets/score.svg" alt="star">
+              </label>
+            </div>
+            <div>
+              <input class="menu__checkbox" id="4" type="checkbox" formControlName="score4">
+              <label for="4">
+                <img src="/assets/score.svg" alt="star">
+                <img src="/assets/score.svg" alt="star">
+                <img src="/assets/score.svg" alt="star">
+                <img src="/assets/score.svg" alt="star">
+                <img src="/assets/emptyScore.svg" alt="star">
+              </label>
+            </div>
+            <div>
+              <input class="menu__checkbox" id="3" type="checkbox" formControlName="score">
+              <label for="3">
+                <img src="/assets/score.svg" alt="star">
+                <img src="/assets/score.svg" alt="star">
+                <img src="/assets/score.svg" alt="star">
+                <img src="/assets/emptyScore.svg" alt="star">
+                <img src="/assets/emptyScore.svg" alt="star">
+              </label>
+            </div>
+            <div>
+              <input class="menu__checkbox" id="2" type="checkbox" formControlName="score2">
+              <label for="2">
+                <img src="/assets/score.svg" alt="star">
+                <img src="/assets/score.svg" alt="star">
+                <img src="/assets/emptyScore.svg" alt="star">
+                <img src="/assets/emptyScore.svg" alt="star">
+                <img src="/assets/emptyScore.svg" alt="star">
+              </label>
+            </div>
+            <div>
+              <input class="menu__checkbox" id="1" type="checkbox" formControlName="score1">
+              <label for="1">
+                <img src="/assets/score.svg" alt="star">
+                <img src="/assets/emptyScore.svg" alt="star">
+                <img src="/assets/emptyScore.svg" alt="star">
+                <img src="/assets/emptyScore.svg" alt="star">
+                <img src="/assets/emptyScore.svg" alt="star">
+              </label>
+            </div>
+            <div class="menu__price">
+            </div>
+            <div class="menu__buttons">
+              <button class="submit" type="submit">Apply</button>
+              <button (click)="reset()">Reset</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-9 items">
+
+      <div *ngIf="(loadingProducts$ | async)">
+        <app-loader></app-loader>
+      </div>
+      <div *ngIf="(loadedProducts$ | async)">
+        <div *ngIf="products$ |async as products">
+
+          <div *ngIf="view === 'grid'">
+            <div @fade *ngFor="let product of products" class="product col-md-4">
+              <div class="product__img">
+                <a [routerLink]="['/products', product.id]"><img src={{product.img}} alt="img"></a>
+              </div>
+              <h5 class="product__title">
+                <a [routerLink]="['/products', product.id]">{{product.name}}</a>
+              </h5>
+              <span class="product__text">description</span>
+              <div class="product__buy">
+                <div class="product__price"><strong>{{product.price}} $</strong></div>
+                <div class="product__btn" *ngIf="ids$ | async as ids">
+                  <button type="submit" *ngIf="!ids.includes(product.id); else inBag" (click)="addProduct(product)">Buy
+                    now</button>
+                  <ng-template #inBag>
+                    <button (click)="remove(product)" type="button" class="disabled">In your bag</button>
+                  </ng-template>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="view === 'list'">
+            <div @fade *ngFor="let product of products" class="items__products row">
+              <div class="items-image-containe col-md-4">
+                <a data-cy="product__img" [routerLink]="['/products', product.id]"><img
+                    class="items-image-container__image" src={{product.img}} alt={{product.name}}></a>
+              </div>
+              <div class="col-md-8 row">
+                <div class="items__info col-md-7">
+                  <h6>
+                    <a [routerLink]="['/products', product.id]">{{product.name}}</a>
+                  </h6>
+                  <small>Space for a small product description</small><br>
+                  <img src="/assets/score.svg" alt="">
+                  <img src="/assets/score.svg" alt="">
+                  <img src="/assets/score.svg" alt="">
+                  <img src="/assets/score.svg" alt="">
+                  <img src="/assets/emptyScore.svg" alt="">
+                  <div class="row">
+                    <p class="col-md-2 product-info__option-name">Author:</p>
+                    <p class="col-md-10 product-info__info-text">{{product.author}}</p>
+                  </div>
+                  <div class="row">
+                    <p class="col-md-2 product-info__option-name">Year:</p>
+                    <p class="col-md-10 product-info__info-text">{{product.year}}</p>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div>{{product.price}} USD</div>
+                  <small>Free Shipping</small>
+                  <small>Delivery in 1 day</small><br>
+                  <button [routerLink]="['/products', product.id]">Product Detail </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="items__action">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

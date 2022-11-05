@@ -1,0 +1,39 @@
+<div class="container" *ngIf="product$ | async as product">
+
+  <div *ngIf="(loading$ | async)">
+    <app-loader></app-loader>
+  </div>
+  <div *ngIf="(loaded$ | async)">
+    <div @fade class="item row">
+      <div class="col-md-5 item__img">
+        <img src={{product.img}} alt={{product.name}}>
+      </div>
+      <div class="col-md-7 item__info">
+        <h3>{{product.name}}</h3>
+      </div>
+      <div class="row">
+        <button class="col-md-4" (click)="setChoice('Description')">Description</button>
+        <button class="col-md-4" (click)="setChoice('Reviews')">Reviews</button>
+        <button class="col-md-4" (click)="setChoice('Questions')">Questions</button>
+      </div>
+      <div [@slideInL] *ngIf="choice==='Description'">
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quae voluptatibus illo sed sint similique? Doloribus
+        dolores harum ipsum odit, voluptate esse quia aliquam repellendus fugiat ullam eius ea a necessitatibus officia
+        explicabo enim consequuntur. Nisi quasi ipsam quam incidunt expedita dignissimos ducimus iste aperiam voluptate
+        modi, aliquid nobis maiores corporis ea, quos exercitationem suscipit asperiores enim odio! Aperiam, porro quos.
+        Quam architecto repellat laborum doloremque dignissimos, magni animi ex, pariatur est ratione accusantium. Porro
+        doloribus delectus corporis eligendi, iste ad nobis voluptatibus aliquam omnis necessitatibus repudiandae,
+        architecto, mollitia quas suscipit corrupti? Optio dolores alias iste quaerat? Quia officiis tempore sed.
+      </div>
+      <div [@slideInR] *ngIf="choice==='Reviews' && prevChoice==='Description'">
+        <app-comments></app-comments>
+      </div>
+      <div [@slideInL] *ngIf="choice==='Reviews' && prevChoice==='Questions'">
+        <app-comments></app-comments>
+      </div>
+      <div [@slideInR] *ngIf="choice==='Questions'">
+        Questions
+      </div>
+    </div>
+  </div>
+</div>

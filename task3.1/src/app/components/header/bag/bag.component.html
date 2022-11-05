@@ -1,0 +1,253 @@
+<div class="row container">
+  <div class="col-md-7 billing">
+    <div *ngIf="products$ | async as products">
+      <small class="fail-massage" *ngIf="products.length === 0">You have not products in your bag</small>
+      <form class="form" [formGroup]="form" (ngSubmit)="completeOrder(products)">
+        <div class="billing__info">
+          <h4 class="title">Billing info</h4>
+          <div class="row">
+            <small class="title-small-text col-md-6">Please enter your billing info</small>
+            <small class="title-small-text col-md-2 offset-md-4">Step 1 of 5</small>
+          </div>
+          <div class="row">
+            <div class="col-md-6 first-name">
+              <label class="head">First name</label><br>
+              <input class="input" type="text" formControlName="firstName" placeholder="First name" />
+              <div class="validation" *ngIf="form.get('firstName')?.invalid && form.get('firstName')?.touched">
+                <small *ngIf="form.get('firstName')?.errors?.['required']">First name must not be empty</small>
+                <small *ngIf="form.get('firstName')?.errors?.['maxlength']">do not exceed 30 characters</small>
+              </div>
+            </div>
+            <div class="col-md-6 last-name">
+              <label class="head">Last name</label><br>
+              <input class="input" type="text" formControlName="lastName" placeholder="Last name" />
+              <div class="validation" *ngIf="form.get('lastName')?.invalid && form.get('lastName')?.touched">
+                <small *ngIf="form.get('lastName')?.errors?.['required']">Last name must not be empty</small>
+                <small *ngIf="form.get('lastName')?.errors?.['maxlength']">do not exceed 30 characters</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 email">
+              <label class="head">E-mail address</label><br>
+              <input class="input" type="email" placeholder="Email address" formControlName="email" />
+              <div class="validation" *ngIf="form.get('email')?.invalid && form.get('email')?.touched">
+                <small *ngIf="form.get('email')?.errors?.['required']">email must not be empty</small>
+                <small *ngIf="form.get('email')?.errors?.['email']">enter a valid email</small>
+              </div>
+            </div>
+            <div class="col-md-6 number">
+              <label class="head">Phone number</label><br>
+              <input class="input" type="tel" placeholder="Phone number" formControlName="number" />
+              <div class="validation" *ngIf="form.get('number')?.invalid && form.get('number')?.touched">
+                <small *ngIf="form.get('number')?.errors?.['required']">number must not be empty</small>
+                <small *ngIf="form.get('number')?.errors?.['maxlength']">number must be longer</small>
+                <small *ngIf="form.get('number')?.errors?.['minlength']">number must be shorter</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 address">
+              <label class="head">Address</label><br>
+              <input class="input" type="text" formControlName="address" placeholder="Address" />
+              <div class="validation" *ngIf="form.get('address')?.invalid && form.get('address')?.touched">
+                <small *ngIf="form.get('address')?.errors?.['required']">Address must not be empty</small>
+              </div>
+            </div>
+            <div class="col-md-6 town">
+              <label class="head">Town / City</label><br>
+              <input class="input" type="text" formControlName="town" placeholder="Town or city" />
+              <div class="validation" *ngIf="form.get('town')?.invalid && form.get('town')?.touched">
+                <small *ngIf="form.get('town')?.errors?.['required']">Town name must not be empty</small>
+                <small *ngIf="form.get('town')?.errors?.['maxlength']">do not exceed 30 characters</small>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="row">
+            <div class="col-md-6 state">
+              <label class="head">State / Country</label><br>
+              <input class="input" type="text" formControlName="state" placeholder="Choose state or Country" />
+              <div class="validation" *ngIf="form.get('state')?.invalid && form.get('state')?.touched">
+                <small *ngIf="form.get('state')?.errors?.['required']">State or country name must not be empty</small>
+                <small *ngIf="form.get('state')?.errors?.['maxlength']">do not exceed 30 characters</small>
+              </div>
+            </div>
+            <div class="col-md-6 zip">
+              <label class="head">ZIP/Postal code</label><br>
+              <input class="input" type="text" formControlName="zip" placeholder="ZIP/Postal code" />
+              <div class="validation" *ngIf="form.get('zip')?.invalid && form.get('zip')?.touched">
+                <small *ngIf="form.get('zip')?.errors?.['required']">ZIP/Postal code must not be empty</small>
+              </div>
+            </div>
+            <div class="agree">
+              <input type="checkbox" formControlName="diffAddress">
+              <label>Ship to a different address?</label>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="billing__method">
+          <h4 class="title">Billing method</h4>
+          <div class="row">
+            <small class="title-small-text col-md-6">Please enter your payment method</small>
+            <small class="title-small-text col-md-2 offset-md-4">Step 2 of 5</small>
+          </div>
+          <div>
+            <label class="billing__label" for="fedEx">
+              <div class="billing__radio row">
+                <input class="col-md-1" id="fedEx" type="radio" formControlName="billingMethod" value="Fed Ex">
+                <p class="col-md-1">Fed Ex</p>
+                <p class="col-md-2 offset-md-1 price">+32 USD</p>
+                <p class="col-md-3 ">Additional price</p>
+                <img class="col-md-2 offset-md-2" src="assets/fedEx.svg" alt="Fed Ex">
+              </div>
+            </label>
+
+            <label class="billing__label" for="dhl">
+              <div class="billing__radio row">
+                <input class="col-md-1" id="dhl" type="radio" formControlName="billingMethod" value="DHL">
+                <p class="col-md-1">
+                  DHL
+                </p>
+                <p class="col-md-2 offset-md-1 price">+15 USD</p>
+                <p class="col-md-3">Additional price</p>
+                <img class="col-md-2 offset-md-2" src="assets/dhl.svg" alt="DHL">
+              </div>
+            </label>
+          </div>
+        </div>
+
+
+        <div class="billing__payment">
+          <h4 class="title">Payment method</h4>
+          <div class="row">
+            <small class="title-small-text col-md-6">Please enter your payment method</small>
+            <small class="title-small-text col-md-2 offset-md-4">Step 3 of 5</small>
+          </div>
+          <div>
+            <label class="billing__label" for="creditCard">
+              <div class="billing__radio row">
+                <input class="col-md-1" id="creditCard" type="radio" formControlName="paymentMethod"
+                  value="Credit Card">
+                <p class="col-md-2">Credit card</p>
+                <img class="col-md-2 offset-md-7" src="assets/creditCard.svg" alt="Fed Ex">
+              </div>
+            </label>
+
+
+            <label class="billing__label" for="payPal">
+              <div class="billing__radio row">
+                <input class="col-md-1" id="payPal" type="radio" formControlName="paymentMethod" value="PayPal">
+                <p class="col-md-2">PayPal</p>
+                <img class="col-md-2 offset-md-7" src="assets/payPal.svg" alt="PayPal">
+              </div>
+            </label>
+
+            <label class="billing__label" for="bitcoin">
+              <div class="billing__radio row">
+                <input class="col-md-1" id="bitcoin" type="radio" formControlName="paymentMethod" value="Bitcoin">
+                <p class="col-md-2">
+                  Bitcoin
+                </p>
+                <img class="col-md-2 offset-md-7" src="assets/bitcoin.svg" alt="Bitcoin">
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <div class="billing__addit">
+          <h4 class="title">Additional informations</h4>
+          <div class="row">
+            <small class="title-small-text col-md-6">Need something else? We will make it for you!</small>
+            <small class="title-small-text col-md-2 offset-md-4">Step 4 of 5</small>
+          </div>
+          <label class="head"></label><br>
+          <small><b>Order notes</b></small>
+          <textarea class="input textarea" placeholder="Need a specific delivery day? Sending a gitf? Let’s say ..."
+            formControlName="additional"></textarea>
+        </div>
+
+
+        <div class="billing__confirm">
+          <h4 class="title">Confirmation</h4>
+          <div class="row">
+            <small class="title-small-text col-md-6">We are getting to the end. Just few clicks and your order si
+              ready!</small>
+            <small class="title-small-text col-md-2 offset-md-4">Step 5 of 5</small>
+          </div>
+          <div class="agree">
+            <input type="checkbox" formControlName="agreeToSending">
+            <label>I agree with sending an Marketing and newsletter emails. No spam,
+              promissed!</label>
+          </div>
+          <div class="agree">
+            <input type="checkbox" formControlName="agreeWithPolicy">
+            <label>I agree with our <u>terms and conditions</u> and <u>privacy policy</u>.</label>
+          </div>
+        </div>
+        <button class="submit" type="submit" [disabled]="form.invalid || products.length === 0">Complete order</button>
+        <small class="success-massage" *ngIf="loaded$ | async">Your order has been sent successfully!
+        </small>
+        <small class="fail-massage" *ngIf="(error$ | async) && (formComplete)">
+          Error. Your order has not been sent.</small>
+      </form>
+    </div>
+  </div>
+
+
+
+  <div class="col-md-5 order">
+    <div *ngIf="products$ | async as products">
+      <div>
+        <div class="row head">
+          <h4 class="title">Order Summary</h4>
+          <small class="title-small-text">Price can change depending on shipping method and taxes of your
+            state.</small>
+        </div>
+        <div *ngFor="let product of products">
+          <div class="product row">
+            <div class="col-md-4 product__img-block">
+              <img data-cy="bag-product" class="product__img" src={{product.img}} alt="image"><br>
+              <button class="product__action"><img class="product__icon" src="assets/wishlist.svg"
+                  alt="wishlist"><span>Wishlist</span>
+              </button>
+              <button class="product__action"><img class="product__icon" src="assets/compare.svg"
+                  alt="compare"><span>Compare</span>
+              </button>
+              <button (click)="remove(product)" class="product__action"><img class="product__icon"
+                  src="assets/remove.svg" alt="remove">
+                <span>Remove</span>
+              </button>
+            </div>
+            <div class="col-md-8 product-info">
+              <h6 class="product-info__title">{{product.name}}</h6>
+              <div class="row">
+                <p class="col-md-2 product-info__option-name text">Author:</p>
+                <p class="col-md-10 product-info__info-text text">{{product.author}}</p>
+              </div>
+              <div class="row">
+                <p class="col-md-2 product-info__option-name text">Year:</p>
+                <p class="col-md-10 product-info__info-text text">{{product.year}}</p>
+              </div>
+              <div>score</div>
+              <div>{{product.price}} USD</div>
+            </div>
+            <hr>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <img src="assets/safeData.svg" alt="">
+    <div class="safe-data">
+      <p><b>All your data are safe</b></p>
+      <span>We are using the most advanced security to provide you the best experience ever.</span>
+    </div>
+  </div>
+</div>

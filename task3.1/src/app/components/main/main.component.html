@@ -1,0 +1,115 @@
+<div class="container">
+  <div class="part category-menu row">
+    <div class="menu col-3">
+      <h4>Category menu</h4>
+      <div *ngIf="(loadingCategories$ | async)">
+        <app-loader></app-loader>
+      </div>
+      <div *ngIf="(loadedCategories$ | async)">
+        <ul *ngIf="categories$ | async as categories" class="menu__list">
+          <li *ngFor="let category of categories">{{category}}</li>
+        </ul>
+      </div>
+      <button type="button" class="menu__btn">More categories <img src="/assets/arrowRight.svg" alt="arrow"></button>
+    </div>
+    <div class="articles col-9">
+      <div class="articles__item">
+        <span class="articles__text">Bunner</span>
+        <h3 class="articles__heading">Heading</h3>
+        <button type="button" class="articles__btn">Read more</button>
+      </div>
+      <div class="articles__item">
+        <span class="articles__text">Bunner</span>
+        <h3 class="articles__heading">Heading</h3>
+        <button type="button" class="articles__btn">Read more</button>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="part bestselling-menu row">
+    <div class="menu col-3">
+      <h4>Best selling products</h4>
+
+      <div *ngIf="(loadingProducts$ | async)">
+        <app-loader></app-loader>
+      </div>
+      <div *ngIf="(loadedProducts$ | async)">
+        <ul *ngIf="bestsellers$ | async as bestsellers" class="menu__list">
+          <li *ngFor="let bestseller of bestsellers">
+            <a data-cy="bestseller-product" [routerLink]="['/products', bestseller.id]">{{bestseller.name}}</a>
+          </li>
+        </ul>
+      </div>
+      <button type="button" class="menu__btn" [routerLink]="['/category/bestsellers']">More products <img
+          src="/assets/arrowRight.svg" alt="arrow"></button>
+    </div>
+    <div *ngIf=" bestsellersCarousel$ | async as bestsellers" class="products col-9 row">
+      <div *ngFor="let bestseller of bestsellers | slice:0:3" class="product__item col-md-4">
+        <div class="product__img">
+          <a [routerLink]="['/products', bestseller.id]"><img src={{bestseller.img}} alt="img"></a>
+        </div>
+        <h5 class="product__title">
+          <a [routerLink]="['/products', bestseller.id]">{{bestseller.name}}</a>
+        </h5>
+        <span class="product__text">description</span>
+        <div class="product__buy">
+          <div class="product__price"><strong>{{bestseller.price}} $</strong></div>
+          <div class="product__btn" *ngIf="ids$ | async as ids">
+            <button type="submit" *ngIf="!ids.includes(bestseller.id); else inBag" (click)="addProduct(bestseller)">Buy
+              now</button>
+            <ng-template #inBag>
+              <button (click)="remove(bestseller)" type="button" class="disabled">In your bag</button>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="part top-ranking-menu row">
+    <div class="menu col-3">
+      <h4>Top ranking products</h4>
+
+      <div *ngIf="(loadingProducts$ | async)">
+        <app-loader></app-loader>
+      </div>
+      <div *ngIf="(loadedProducts$ | async)">
+        <ul *ngIf="topRanking$ | async as topRanking" class="menu__list">
+          <li *ngFor="let top of topRanking">
+            <a [routerLink]="['/products', top.id]">{{top.name}}</a>
+          </li>
+        </ul>
+      </div>
+      <button type="button" class="menu__btn" [routerLink]="['/category/bestsellers']">More products <img
+          src="/assets/arrowRight.svg" alt="arrow"></button>
+    </div>
+    <div *ngIf=" topRanking$ | async as topRanking" class="products col-9 row">
+      <div *ngFor="let top of topRanking | slice:0:3" class="product__item col-md-4">
+        <div class="product__img">
+          <a [routerLink]="['/products', top.id]"><img src={{top.img}} alt="img"></a>
+        </div>
+        <h5 class="product__title">
+          <a [routerLink]="['/products', top.id]">{{top.name}}</a>
+        </h5>
+        <span class="product__text">description</span>
+        <div class="product__buy">
+          <div class="product__price"><strong>{{top.price}} $</strong></div>
+          <div class="product__btn" *ngIf="ids$ | async as ids">
+            <button type="submit" *ngIf="!ids.includes(top.id); else inBag" (click)="addProduct(top)">Buy
+              now</button>
+            <ng-template #inBag>
+              <button (click)="remove(top)" type="button" class="disabled">In your bag</button>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="comments"></div>
+  <div class="headline"></div>
+  <div class="blog-posts"></div>
+  <div class="refs"></div>
+  <div class="tags"></div>
+</div>

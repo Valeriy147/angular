@@ -1,0 +1,8 @@
+.item{
+  margin-top: 30px;
+}
+
+.item__img > img{
+  width: 100%;
+  border-radius: 12px;
+}

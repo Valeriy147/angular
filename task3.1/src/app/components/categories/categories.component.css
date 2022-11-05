@@ -1,0 +1,32 @@
+.categories{
+  background: #F9F9F9;
+  width: 100%;
+  padding: 0;
+  height: 55px;
+  text-align: left;
+  margin-bottom: 30px;
+}
+
+.categories__items{
+  width:100%;
+  line-height: 55px;
+}
+
+span{
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+  color: #151515;
+  padding: 3%;
+  height: 20%;
+}
+
+.path > small{
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+}

@@ -1,0 +1,214 @@
+{
+  "orders": [
+    {
+      "firstName": "Валерий",
+      "lastName": "Козлов",
+      "email": "Valera.31.07.9.9@gmail.com",
+      "number": "0686533292",
+      "address": "Садовый бульвар",
+      "town": "Шостка",
+      "state": "234",
+      "zip": "234",
+      "billingMethod": "Fed Ex",
+      "paymentMethod": "PayPal",
+      "additional": "234234234",
+      "agreeToSending": true,
+      "agreeWithPolicy": true,
+      "id": 1
+    }
+  ],
+  "category": [
+    "Bestsellers",
+    "Top Ranking"
+  ],
+  "comments": [
+    {
+      "name": "Person A",
+      "text": "good shop",
+      "score": 5,
+      "email": "a@gmail.com",
+      "parentId": 1,
+      "id": 1
+    },
+    {
+      "name": "Person B",
+      "text": "normal shop",
+      "score": 3,
+      "email": "b@gmail.com",
+      "parentId": 2,
+      "id": 2
+    },
+    {
+      "name": "Person C",
+      "text": "bad shop",
+      "score": 1,
+      "email": "c@gmail.com",
+      "id": 3,
+      "parentId": 3
+    },
+    {
+      "email": "Valera.31.07.9.9@gmail.com",
+      "name": "xxx",
+      "text": "xxx",
+      "score": "5",
+      "parentId": 4,
+      "id": 4
+    },
+    {
+      "email": "Valera.31.07.9.9@gmail.com",
+      "name": "11",
+      "text": "1",
+      "score": "5",
+      "parentId": 5,
+      "id": 5
+    },
+    {
+      "email": "Valera.31.07.9.9@gmail.com",
+      "name": "222",
+      "text": "222",
+      "score": "5",
+      "parentId": 6,
+      "id": 6
+    },
+    {
+      "email": "Valera.31.07.9.9@gmail.com",
+      "name": "John",
+      "text": "good",
+      "score": "2",
+      "parentId": 7,
+      "id": 7
+    },
+    {
+      "email": "Valera.31.07.9.9@gmail.com",
+      "name": "Anonimus",
+      "text": "---",
+      "score": "3",
+      "parentId": 8,
+      "id": 8
+    },
+    {
+      "email": "Valera.31.07.9.9@gmail.com",
+      "name": "I am",
+      "text": "so so",
+      "score": "3",
+      "parentId": 9,
+      "id": 9
+    },
+    {
+      "email": "Valera.31.07.9.9@gmail.com",
+      "name": "qwerty",
+      "text": "normal",
+      "score": "4",
+      "parentId": 10,
+      "id": 10
+    },
+    {
+      "email": "Valera.31.07.9.9@gmail.com",
+      "name": "2",
+      "text": "626",
+      "score": "5",
+      "parentId": 7,
+      "id": 11
+    },
+    {
+      "email": "Valera.31.07.9.9@gmail.com",
+      "name": "dfg",
+      "text": "dfg",
+      "score": "5",
+      "parentId": 7,
+      "id": 12
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "img": "/assets/monaLiza.jpg",
+      "author": "Leonardo da Vinci",
+      "name": "Mona Lisa",
+      "year": 1519,
+      "type": "bestsellers",
+      "price": 42
+    },
+    {
+      "id": 2,
+      "img": "/assets/theLastSupper.jpg",
+      "author": "Leonardo da Vinci",
+      "name": "The Last Supper",
+      "year": 1498,
+      "type": "bestsellers",
+      "price": 350
+    },
+    {
+      "id": 3,
+      "img": "/assets/theStarryNight.jpg",
+      "author": "Vincent van Gogh",
+      "name": "The Starry Night",
+      "year": 1889,
+      "type": "bestsellers",
+      "price": 79
+    },
+    {
+      "id": 4,
+      "img": "/assets/theScream.jpg",
+      "author": "Edvard Munch",
+      "name": "The Scream",
+      "year": 1893,
+      "type": "bestsellers",
+      "price": 100
+    },
+    {
+      "id": 5,
+      "img": "/assets/guernica.jpg",
+      "author": "Pablo Picasso",
+      "name": "Guernica",
+      "year": 1937,
+      "type": "bestsellers",
+      "price": 80
+    },
+    {
+      "id": 6,
+      "img": "/assets/theKiss.jpg",
+      "author": "Gustav Klimt",
+      "name": "The Kiss",
+      "year": 1908,
+      "type": "bestsellers",
+      "price": 65
+    },
+    {
+      "id": 7,
+      "img": "/assets/girlWithAPearlEarring.jpg",
+      "author": "Johannes Vermeer",
+      "name": "Girl With a Pearl Earring",
+      "year": 1665,
+      "type": "topRanking",
+      "price": 185
+    },
+    {
+      "id": 8,
+      "img": "/assets/theBirthOfVenus.jpg",
+      "author": "Sandro Botticelli",
+      "name": "The Birth of Venus",
+      "year": 1485,
+      "type": "topRanking",
+      "price": 15
+    },
+    {
+      "id": 9,
+      "img": "/assets/lasMeninas.jpg",
+      "author": "Diego Velázquez",
+      "name": "Las Meninas",
+      "year": 1656,
+      "type": "topRanking",
+      "price": 57
+    },
+    {
+      "id": 10,
+      "img": "/assets/creationOfAdam.jpg",
+      "author": "Michelangelo",
+      "name": "Creation of Adam",
+      "year": 1508,
+      "type": "topRanking",
+      "price": 165
+    }
+  ]
+}

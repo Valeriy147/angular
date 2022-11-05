@@ -1,0 +1,19 @@
+.my-tooltip{
+  text-align: center;
+  position: fixed;
+  padding: 6px 12px;
+  font-size: medium;
+  font-weight: 600;
+  transform: translate(-50%, -30%);
+  pointer-events: none;
+  color: white;
+  background: #677a75ee;
+  z-index: 1;
+}
+body{
+  background: #F9F9F9;;
+}
+a{
+  text-decoration: none;
+  color: #151515;
+}

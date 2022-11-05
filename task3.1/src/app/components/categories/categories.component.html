@@ -1,0 +1,18 @@
+<div class="container">
+  <div *ngIf="(loading$ | async)">
+    <app-loader></app-loader>
+  </div>
+  <div *ngIf="(loaded$ | async)">
+    <div *ngIf="categories$ | async as categories" class="categories">
+      <div class="categories__items">
+        <span *ngFor="let category of categories">
+          <a [routerLink]="['/category', category[0].toLowerCase() + category.slice(1).split(' ').join('')]">{{category}}
+          </a>
+        </span>
+      </div>
+    </div>
+    <div class="path">
+      <a class="path__homepage" [routerLink]="['/']">Homepage</a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,87 @@
+.comments-field{
+  display: flex;
+  text-align: center;
+}
+
+.comments-field_comment{
+  padding: 2%;
+  box-sizing: border-box;
+  width: 10%;
+  margin: 5px 10px;
+  border: 1px solid #F1F1F1;
+  border-radius: 12px;
+  width: 369px;
+  height: 198px;
+}
+
+input.ng-invalid.ng-touched {
+ border: 1px solid red;
+}
+
+input.ng-valid.ng-touched {
+ border: 1px solid green;
+}
+
+textarea.ng-invalid {
+  border: 1px solid red;
+}
+
+.form{
+  margin-top: 30px;
+  text-align: center;
+  margin-bottom: 100px;
+}
+
+.form > div{
+  margin: 20px auto;
+}
+
+input{
+  border-radius: 7px;
+  width: 300px;
+  border: none;
+  background-color: rgb(232, 232, 232);
+}
+
+.title{
+  font-weight: 500;
+  font-size: 13px;
+  margin-right: 15px;
+}
+
+hr{
+  margin: 0 auto;
+  width:30%;
+  color: rgb(22, 31, 30);
+}
+
+small{
+  color: red;
+}
+
+textarea{
+  width: 30%;
+  height: 200px;
+  padding: 8px;
+  border-radius: 5px;
+  background-color: rgb(232, 232, 232);
+  border: none;
+}
+
+.submit{
+  background-color: rgb(208, 245, 235);
+  width: 20%;
+  height: 40px;
+  font-size: 20px;
+  border-radius: 8px;
+}
+
+.success-massage{
+  display: block;
+  color: green;
+}
+
+.fail-massage{
+  display: block;
+  color: red
+}

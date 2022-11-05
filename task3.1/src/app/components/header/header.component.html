@@ -1,0 +1,112 @@
+<header class="header">
+  <div class="container">
+    <div class="row">
+      <div class="contact-info col-md-5">
+        <span appTooltip="Move to chat" class="contact-info__chat head-text">Chat with us</span>
+        <span appTooltip="You can change your number" class="contact-info__phone head-text">{{phone | phone}}</span>
+        <span appTooltip="Click to change email" class="contact-info__email head-text">info@freshnesecom.com</span>
+      </div>
+      <div class="info col-md-5 offset-md-2">
+        <span appTooltip="Move to blog" class="info__blog head-text">Blog</span>
+        <span appTooltip="Information about company" class="info__about head-text">
+          <a [routerLink]="['/about-us']">About us</a>
+        </span>
+        <span appTooltip="For employee" class="info__careers head-text">
+          <a [routerLink]="['/careers']">Careers</a>
+        </span>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="header-bottom-container row">
+      <div class="title col-md-2">
+        <h2 appTooltip="The best company" class="title__text">Frechnesecom</h2>
+      </div>
+      <form class="search-form col-md-6 offset-md-1" [formGroup]="form" (ngSubmit)="search()">
+        <select placeholder="categories" formControlName="category" *ngIf="categories$ | async as categories"
+          class="form-select">
+          <option>All categories</option>
+          <option *ngFor="let category of categories" value={{category}}>{{category}}</option>
+        </select>
+        <span>|</span>
+        <input formControlName="input" appTooltip="enter the keywords" class="form-control" type="text"
+          placeholder="Search Products, categories ...">
+        <button type="submit" [disabled]="form.invalid" class="search-form__btn"><img src="/assets/search.svg"
+            alt="search"></button>
+        <div class="search-form__products" *ngIf="searchProducts$ | async as searchProducts">
+          <hr *ngIf="searchProducts.length > 0">
+          <div class="search-form__product" *ngFor="let searchProduct of searchProducts"
+            [routerLink]="['/products', searchProduct.id]" (click)="reset()">{{searchProduct.name}},
+            {{searchProduct.year}}</div>
+        </div>
+      </form>
+
+      <div class="navigation-icons col-md-2 offset-md-1">
+        <div>
+          <img appTooltip="your profile" class="navigation-icons__img" src="/assets/userIcon.svg" alt="Profile Icon">
+        </div>
+        <div *ngIf="products$ | async as products" class="navigation-icons__img-container">
+          <img data-cy="bag" (click)="active=true" appTooltip={{products.length}} class="navigation-icons__img"
+            src="/assets/bagIcon.svg" alt="Bag Icon">
+          <div [@attention]="(products.length)" *ngIf="products.length" class="totalCount">{{products.length}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div [ngClass]="{active: active}" class="modal" (click)="active=false">
+    <div *ngIf="products$ | async as products" [ngClass]="{active: active}" class="modal__content"
+      (click)="onEvent($event)">
+      <div class="overflow">
+        <div class="row head">
+          <h4 class="col-md-6 head__title">Shopping cart</h4>
+          <small class="col-md-1 offset-md-3 head__close-text">Close</small>
+          <img class="col-md-2 head__close" (click)="active=false" src="/assets/bagClose.svg" alt="Close">
+        </div>
+        <div *ngFor="let product of products">
+          <div class="product row">
+            <div class="col-md-4 product__img-block">
+              <img data-cy="modal-bag-product" class="product__img" src={{product.img}} alt="image"><br>
+              <button class="product__action"><img class="product__icon" src="assets/wishlist.svg"
+                  alt="wishlist"><span>Wishlist</span>
+              </button>
+              <button class="product__action"><img class="product__icon" src="assets/compare.svg"
+                  alt="compare"><span>Compare</span>
+              </button>
+              <button (click)="remove(product)" class="product__action"><img class="product__icon"
+                  src="assets/remove.svg" alt="remove">
+                <span>Remove</span>
+              </button>
+            </div>
+            <div class="col-md-8 product-info">
+              <h6 class="product-info__title">{{product.name}}</h6>
+              <div class="row">
+                <p class="col-md-2 product-info__option-name text">Author:</p>
+                <p class="col-md-10 product-info__info-text text">{{product.author}}</p>
+              </div>
+              <div class="row">
+                <p class="col-md-2 product-info__option-name text">Year:</p>
+                <p class="col-md-10 product-info__info-text text">{{product.year}}</p>
+              </div>
+              <div>score</div>
+              <div>{{product.price}} USD</div>
+            </div>
+            <hr>
+          </div>
+        </div>
+      </div>
+      <div class="bag-footer">
+        <div>
+          <p class="bag-footer__price" *ngIf="totalPrice$ | async as totalPrice">Subtotal<br>{{totalPrice}} USD</p>
+          <hr>
+          <button class="bag-footer__continue" (click)="active = false">Continue shopping</button>
+          <div class="bag-footer__checkout" (click)="active=false">
+            <a data-cy="checkout" [routerLink]="['/bag']">Go to checkout</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
